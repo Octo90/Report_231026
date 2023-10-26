@@ -41,6 +41,7 @@ class SQLP {
         pstmt = conn.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
         if (rs.next()) {
+            System.out.println("=====================================================");
             System.out.print("이름 : " + rs.getString("name") + ", ");
             System.out.print("전화번호 : " + rs.getString("phoneNumber") + ", ");
             System.out.println("주소 : " + rs.getString("address"));
@@ -56,13 +57,13 @@ class SQLP {
         pstmt = conn.prepareStatement(sql);
         ResultSet rs = pstmt.executeQuery();
 
+        System.out.println("=====================================================");
         while (rs.next()) {
             System.out.print("이름 : " + rs.getString("name") + ", ");
             System.out.print("전화번호 : " + rs.getString("phoneNumber") + ", ");
-            System.out.println("주소 : " + rs.getString("address"));
-            System.out.print("=====================================================");
+            System.out.print("주소 : " + rs.getString("address"));
             System.out.println();
-        }
+        }System.out.println("=====================================================");
     }
 
     void pDelete(String stp) throws SQLException {
