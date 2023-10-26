@@ -1,6 +1,7 @@
 package Exam_231026;
 
 import java.sql.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 class PhoneB{
@@ -103,8 +104,19 @@ public class JavaTest_231026 {
         SQLP sqlp = new SQLP();
         InputClass ic = new InputClass();
         while (true) {
-            System.out.print("1. 입력  2. 검색  3. 삭제  4. 출력  5.종료\n -> ");
-            int num = sc.nextInt();
+            int num = 0;
+            while(num < 1 || num > 5){
+                try {
+                    System.out.print("1. 입력  2. 검색  3. 삭제  4. 출력  5.종료\n -> ");
+                    num = sc.nextInt();
+                    if(num <1 || num>5){
+                        System.out.println("잘못 입력하셨습니다. 다시 입력해주세요.");
+                    }
+                } catch (InputMismatchException imp) {
+                    System.out.println("숫자를 입력해 주세요.");
+                    sc.nextLine();
+                }
+            }
             sc.nextLine();
             if (num == 1) {
                 sqlp.PhoneBInsert(ic.valueReturn());
@@ -118,11 +130,9 @@ public class JavaTest_231026 {
                 sqlp.pDelete(stp);
             } else if (num == 4) {
                 sqlp.pAll();
-            } else if (num == 5) {
+            } else {
                 System.out.println("전화번호부를 종료합니다.");
                 break;
-            } else {
-                System.out.println("잘못된 입력입니다.");
             }
         }
     }
